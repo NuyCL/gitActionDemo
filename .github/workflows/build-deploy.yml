@@ -29,6 +29,9 @@ jobs:
         name: dragon-text-file
         path: dragon.txt
 
+    - name: list the files
+      run: ls
+
     - name: Test File
       run: grep -i "dragon" dragon.txt
 
