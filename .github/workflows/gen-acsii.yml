@@ -2,9 +2,8 @@ name: generate ASCII Art
 
 on:
   push
-
 jobs:
-  checkout_job_0:
+  readme_job_0:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Repo
@@ -14,23 +13,20 @@ jobs:
       run: echo "My frist job"
            ls -ltra
            cat README.md
-           
-    - name: list files
-      run: ls
-      
-    - name: Read file
-      run: cat README.md
       
   build_job_1:
     runs-on: ubuntu-latest
     steps:
-    - name: Install cowsay program
+    - name: Checkout Repo
+      uses: actions/checkout@v4
+
+    - name: Install Cowsay Program
       run: sudo apt-get install cowsay -y
 
-    - name: Execute cowsay Cmd
+    - name: Execute Cowsay Cmd
       run: cowsay -f dragon "run for cover, I am a DRAGON..." >> dragon.txt
 
-    - name: Test Fie Exist
+    - name: Test File Exists
       run: grep -i "dragon" dragon.txt
 
     - name: Sleep for 30 seconds
@@ -38,11 +34,8 @@ jobs:
 
     - name: Read file
       run: cat dragon.txt
-      
-  # test_job_2:
-  #   runs-on: 
-  #   steps:
-  #   - name: 
-  #     run:
 
+    - name: List Repo Files
+      run: ls -ltra
+  
       
