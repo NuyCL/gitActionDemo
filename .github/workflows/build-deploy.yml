@@ -30,7 +30,7 @@ jobs:
         path: dragon.txt
 
     - name: list the files
-      run: ls
+      run: ls -ltra
 
     - name: Test File
       run: grep -i "dragon" dragon.txt
