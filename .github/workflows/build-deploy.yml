@@ -1,3 +1,44 @@
 # Build -> Test -> Deploy
+name: Build and Deploy
+
+on:
+  push
+jobs:
+  build_job_1:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install Cowsay
+      run: sudo apt-get install cowsay -y
+
+    - name: Execuring Cowsay
+      run: cowsay -f dragon "Run for cover, I am a Dragon.." >> dragon.txt
+    
+    - name: Upload Dragon Text File
+      uses: actions/upload-artifact@v7
+      with:
+        name: dragon-text-file
+        path: dragon.txt
+  
+  test_job_2:
+    needs: build_job_1
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download Dragon Text File
+      uses: actions/download-artifact@v8
+      with:
+        name: dragon-text-file
+        path: dragon.txt
+
+    - name: Test File
+      run: grep -i "dragon" dragon.txt
+
+  deploy_job-3:
+    needs: [test_job_2]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Read Files
+      run: cat dragon.txt
+
+
 
 
