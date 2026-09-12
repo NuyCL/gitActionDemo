@@ -33,10 +33,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Sleep 10 sec
-      uses: sleep 10
+      run: sleep 10
 
     - name: Test File
-      uses: grep -i "dragon" dragon.txt
+      run: grep -i "dragon" dragon.txt
 
   deploy_job-3:
     needs: [test_job_2]
