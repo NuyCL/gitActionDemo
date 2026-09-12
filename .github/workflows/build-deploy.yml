@@ -27,13 +27,13 @@ jobs:
       uses: actions/download-artifact@v8
       with:
         name: dragon-text-file
-        path: ./dragon-artifact/dragon.txt
+        path: ./dragon.txt
 
     - name: list the files
       run: ls -ltra
 
     - name: Test File
-      run: grep -i "dragon" ./dragon-artifact/dragon.txt
+      run: grep -i "dragon" ./dragon.txt
 
   deploy_job-3:
     needs: [test_job_2]
